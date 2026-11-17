@@ -1,10 +1,20 @@
-
 import type { Metadata } from "next";
+import { Cairo } from "next/font/google";
 import "./globals.css";
 
+const cairo = Cairo({
+  subsets: ["arabic", "latin"],
+  display: "swap",
+  variable: "--font-cairo",
+});
+
 export const metadata: Metadata = {
-  title: "مَدار | MADAR",
-  description: "منصة للفكر والقراءة والحوار - تأسيس وإشراف حمزة الفندي",
+  title: {
+    default: "مَدار | منصة الفكر والحوار",
+    template: "%s | مَدار",
+  },
+  description:
+    "مساحة فكرية للحوار والمعرفة وتبادل الآراء، حيث تلتقي الأسئلة بالأفكار.",
 };
 
 export default function RootLayout({
@@ -14,7 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl">
-      <body>{children}</body>
+      <body className={cairo.className}>{children}</body>
     </html>
   );
 }
